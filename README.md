@@ -25,7 +25,7 @@ Open a terminal and execute the commands detailed below.
     cd <pentaho-server>
     ./start-pentaho.sh
 
-# Feedback and support
+# Documentation and support
 
 For more informations about the project, support or further details, go throught the author's website at [fcorti.com/alflytics](http://fcorti.com/alflytics/).
 
