@@ -1,0 +1,73 @@
+{
+   "count":6,
+   "entries": 
+   [
+      {
+         "id":4751,
+         "application":"alfresco-access",
+         "user":"admin",
+         "time":"2017-02-26T14:57:29.024+01:00",
+         "values":
+         {
+                     "\/alfresco-access\/login\/user":"admin"
+         }
+         
+      },
+      {
+         "id":4752,
+         "application":"alfresco-access",
+         "user":"admin",
+         "time":"2017-02-26T15:04:42.151+01:00",
+         "values":
+         {
+                     "\/alfresco-access\/login\/user":"admin"
+         }
+         
+      },
+      {
+         "id":4753,
+         "application":"alfresco-access",
+         "user":"admin",
+         "time":"2017-02-26T15:04:46.497+01:00",
+         "values":
+         {
+                     "\/alfresco-access\/login\/user":"admin"
+         }
+         
+      },
+      {
+         "id":4754,
+         "application":"alfresco-access",
+         "user":"admin",
+         "time":"2017-02-26T15:04:46.896+01:00",
+         "values":
+         {
+                     "\/alfresco-access\/login\/user":"admin"
+         }
+         
+      },
+      {
+         "id":4755,
+         "application":"alfresco-access",
+         "user":"admin",
+         "time":"2017-02-26T15:31:05.040+01:00",
+         "values":
+         {
+                     "\/alfresco-access\/login\/user":"admin"
+         }
+         
+      },
+      {
+         "id":4756,
+         "application":"alfresco-access",
+         "user":"admin",
+         "time":"2017-02-26T15:31:14.519+01:00",
+         "values":
+         {
+                     "\/alfresco-access\/login\/user":"admin"
+         }
+         
+      }
+   ]
+}
+

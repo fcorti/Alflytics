@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><CDADescriptor>
+  <DataSources>
+    <Connection id="alfrescoInstanceDatasource" type="sql.jndi">
+      <Jndi>Alflytics</Jndi>
+    </Connection>
+    <Connection id="extractionDatasource" type="sql.jndi">
+      <Jndi>Alflytics</Jndi>
+    </Connection>
+    <Connection id="logsDatasource" type="sql.jndi">
+      <Jndi>Alflytics</Jndi>
+    </Connection>
+    <Connection id="dataQualityDatasource" type="sql.jndi">
+      <Jndi>Alflytics</Jndi>
+    </Connection>
+  </DataSources>
+  <DataAccess access="public" connection="alfrescoInstanceDatasource" id="alfrescoInstanceDatasource" type="sql">
+    <Name>alfrescoInstanceDatasource</Name>
+    <Cache duration="3600" enabled="true"/>
+    <Columns/>
+    <Parameters/>
+    <Query><![CDATA[SELECT
+ i.`ID` AS installationId,
+ i.`DESCRIPTION` AS installationDescription
+FROM
+ `DWH_ALF_DIM_INSTANCES` i
+ORDER BY
+ i.`DESCRIPTION` ASC]]></Query>
+  </DataAccess>
+  <DataAccess access="public" connection="extractionDatasource" id="extractionDatasource" type="sql">
+    <Name>extractionDatasource</Name>
+    <Cache duration="3600" enabled="true"/>
+    <Columns/>
+    <Parameters>
+      <Parameter default="1" name="alfrescoInstanceParam" type="Integer"/>
+      <Parameter default="2015-01-01" name="dtFromParam" type="String"/>
+      <Parameter default="2015-01-01" name="dtToParam" type="String"/>
+    </Parameters>
+    <Query><![CDATA[SELECT DISTINCT
+ `BATCH_ID`
+FROM
+ `DWH_DATA_QUALITY_LOGS`
+WHERE
+ `SOURCE_ID` = ${alfrescoInstanceParam}
+ AND `BATCH_END` >= STR_TO_DATE(${dtFromParam},'%Y-%m-%d')
+ AND STR_TO_DATE(DATE_FORMAT("BATCH_START",'%Y-%m-%d'),'%Y-%m-%d') <= STR_TO_DATE(${dtToParam},'%Y-%m-%d')
+ORDER BY
+ `BATCH_ID` ASC]]></Query>
+  </DataAccess>
+  <DataAccess access="public" connection="logsDatasource" id="logsDatasource" type="sql">
+    <Name>logsDatasource</Name>
+    <Cache duration="3600" enabled="true"/>
+    <Columns/>
+    <Parameters>
+      <Parameter default="1" name="alfrescoInstanceParam" type="Integer"/>
+      <Parameter default="extraction" name="extractionParam" type="String"/>
+    </Parameters>
+    <Query><![CDATA[SELECT
+ `DESCRIPTION` AS `Task`,
+ `BATCH_START` AS `Start`,
+ `BATCH_END` AS `End`,
+ (`SUCCESS` = 'Y') AS `Result`
+FROM
+ `DWH_DATA_QUALITY_LOGS`
+WHERE
+ `SOURCE_ID` = ${alfrescoInstanceParam}
+ AND `BATCH_ID` = ${extractionParam}
+ORDER BY
+ `BATCH_START` ASC]]></Query>
+  </DataAccess>
+  <DataAccess access="public" connection="dataQualityDatasource" id="dataQualityDatasource" type="sql">
+    <Name>dataQualityDatasource</Name>
+    <Cache duration="3600" enabled="true"/>
+    <Columns/>
+    <Parameters>
+      <Parameter default="1" name="alfrescoInstanceParam" type="Integer"/>
+      <Parameter default="extraction" name="extractionParam" type="String"/>
+    </Parameters>
+    <Query><![CDATA[SELECT
+ T.`Entities`,
+ T.`Alfresco`,
+ T.`Staging`,
+ T.`Operational`,
+ T.`DataMart`,
+ T.`Check`
+FROM (
+ SELECT
+  dq.`ENTITIES` AS `Entities`,
+  MIN(dq.`CREATION`) AS `Creation`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Alfresco') AS `Alfresco`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Staging') AS `Staging`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Operational') AS `Operational`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Warehouse') AS `DataMart`,
+  (CASE WHEN ((SELECT `VALUE` FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Alfresco') = (SELECT `VALUE` FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Warehouse')) THEN 'true' ELSE 'false' END) AS `Check`
+ FROM
+  `DWH_DATA_QUALITY` dq
+ WHERE
+  dq.`SOURCE_ID` = ${alfrescoInstanceParam}
+  AND dq.`ENTITIES` IN ('Users','Categories','Nodes','OpenTasks')
+  AND dq.`BATCH_ID` = ${extractionParam}
+ GROUP BY
+  dq.`BATCH_ID`,
+  dq.`ENTITIES`
+ UNION ALL
+ SELECT
+  dq.`ENTITIES` AS `Entities`,
+  MIN(dq.`CREATION`) AS `Creation`,
+  'Cannot check' AS `Alfresco`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Staging') AS `Staging`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Operational') AS `Operational`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Warehouse') AS `DataMart`,
+  'ND' AS `Check`
+ FROM
+  `DWH_DATA_QUALITY` dq
+ WHERE
+  dq.`SOURCE_ID` = ${alfrescoInstanceParam}
+  AND dq.`ENTITIES` IN ('AuditTrail')
+  AND dq.`BATCH_ID` = ${extractionParam}
+ GROUP BY
+  dq.`BATCH_ID`,
+  dq.`ENTITIES`
+ UNION ALL
+ SELECT
+  dq.`ENTITIES` AS `Entities`,
+  MIN(dq.`CREATION`) AS `Creation`,
+  CONCAT(COALESCE((SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq2.`ENTITIES`='OpenProcesses' AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Alfresco'),'0'),' (not completed only)')AS `Alfresco`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Staging') AS `Staging`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Operational') AS `Operational`,
+  (SELECT TRIM(CAST(`VALUE` AS CHAR(64))) FROM `DWH_DATA_QUALITY` dq2 WHERE dq.`ENTITIES`=dq2.`ENTITIES` AND dq.`BATCH_ID`=dq2.`BATCH_ID` AND `LAYER`='Warehouse') AS `DataMart`,
+  'ND' AS `Check`
+ FROM
+  `DWH_DATA_QUALITY` dq
+ WHERE
+  dq.`SOURCE_ID` = ${alfrescoInstanceParam}
+  AND dq.`ENTITIES` IN ('Processes')
+  AND dq.`BATCH_ID` = ${extractionParam}
+ GROUP BY
+  dq.`BATCH_ID`,
+  dq.`ENTITIES`
+) T
+ORDER BY
+ T.`Creation` ASC]]></Query>
+  </DataAccess>
+</CDADescriptor>

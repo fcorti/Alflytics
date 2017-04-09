@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin title="Alflytics" loader="DEFAULT">
+<overlays>
+		<overlay id="startup.Alflytics" resourcebundle="content/Alflytics/resources/lang/messages">
+			<menubar id="toolsmenu">
+	        	<menuitem id="Alflytics" label="${Launcher.Alflytics}" command="mantleXulHandler.openUrl('${Launcher.Alflytics}','${Launcher.Alflytics}','api/repos/%3Apublic%3AAlflytics%3ADashboards%3Amain.wcdf/generatedContent')"/>
+	      	</menubar>
+	    </overlay>
+	</overlays>
+	<lifecycle-listener class="pt.webdetails.cpk.CpkLifecycleListener"/>
+	<static-paths>
+		<static-path url="/Alflytics/static" localFolder="static"/>
+		<static-path url="/Alflytics/resources" localFolder="resources"/>
+	</static-paths>
+	<content-types>
+		<content-type>
+			<title>Alflytics</title>
+			<description></description>
+			<company name="" url="" logo="@PLUGIN_COMPANY_LOGO@"></company>
+		</content-type>
+	</content-types>
+	<content-generator
+		id="Alflytics"
+		title="Alflytics"
+		type="Alflytics"
+		class="pt.webdetails.cpk.CpkContentGenerator"/>
+	<!-- Menu entry -->
+	<menu-items>
+		<!--<menu-item id="Alflytics" anchor="tools-submenu" label="Alflytics" command="content/Alflytics/" type="MENU_ITEM" how="LAST_CHILD"/>-->
+	</menu-items>
+</plugin>
