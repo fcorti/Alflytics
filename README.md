@@ -5,7 +5,7 @@ Alflytics is the Open Source Business Intelligence (OSBI) solution over [Alfresc
 
 Alflytics uses the data coming from [Alfresco platform](http://www.alfresco.com), the ability of the [Pentaho platform](http://www.pentaho.com) to build reports, dashboards and free analysis, and the latest techniques in Data Warehousing, to define a complete set of analytics and insights on top of your preferred ECM+BPM solution.
 
-<div style="text-align:center"><img src="https://github.com/fcorti/Alflytics/blob/master/static/custom/img/alflytics.png" width="200px" /></div>
+<img src="https://github.com/fcorti/Alflytics/blob/master/static/custom/img/alflytics.png" width="200px" style="float: right;" />
 
 # Technical details
 
