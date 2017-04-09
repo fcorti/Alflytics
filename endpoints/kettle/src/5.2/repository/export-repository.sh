@@ -64,4 +64,6 @@ rm -rf "$ZIP_NAME"
 
 echo "done!"
 echo ""
+echo "ATTENTION: If \"$REPOSITORY_PATH\" is a \"public\"'s subfolder, remember to modify the 'exportManifest.xml file' to build the whole path in different steps, otherwise the import will fail during the installation task."
+echo ""
 
