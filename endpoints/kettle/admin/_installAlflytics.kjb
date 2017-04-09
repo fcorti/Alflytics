@@ -542,27 +542,27 @@
         </field>
         <field>
           <variable_name>alflyticsDashboardsTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.Dashboards.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.1.Dashboards.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsDatasourcesTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.Datasources.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.5.Datasources.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsOLAPTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.OLAP.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.4.OLAP.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsReportsTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.Reports.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.3.Reports.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsRepositoryTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.ETL.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.2.ETL.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
       </fields>
