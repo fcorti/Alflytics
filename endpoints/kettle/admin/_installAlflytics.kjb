@@ -607,7 +607,7 @@
           <wildcard/>
         </field>
         <field>
-          <source_filefolder>&#x24;&#x7b;alflyticsReportsrcPath&#x7d;</source_filefolder>
+          <source_filefolder>&#x24;&#x7b;alflyticsReportsSrcPath&#x7d;</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
           <destination_filefolder>&#x24;&#x7b;alflyticsReportsTargetPath&#x7d;</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
