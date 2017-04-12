@@ -16,6 +16,26 @@
         <default_value>5.2</default_value>
         <description/>
       </parameter>
+      <parameter>
+        <name>pentahoHost</name>
+        <default_value>localhost&#x3a;8080</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>pentahoPassword</name>
+        <default_value>password</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>pentahoProtocol</name>
+        <default_value>http&#x3a;</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>pentahoUser</name>
+        <default_value>admin</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <slaveservers>
     </slaveservers>
@@ -521,11 +541,6 @@
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
-          <variable_name>alflyticsDatasourcesSrcPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;src&#x24;&#x7b;file.separator&#x7d;&#x24;&#x7b;alfrescoVersion&#x7d;&#x24;&#x7b;file.separator&#x7d;repository&#x24;&#x7b;file.separator&#x7d;Alflytics.Datasources.zip</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
-        </field>
-        <field>
           <variable_name>alflyticsOLAPSrcPath</variable_name>
           <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;src&#x24;&#x7b;file.separator&#x7d;&#x24;&#x7b;alfrescoVersion&#x7d;&#x24;&#x7b;file.separator&#x7d;repository&#x24;&#x7b;file.separator&#x7d;Alflytics.OLAP.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
@@ -542,34 +557,29 @@
         </field>
         <field>
           <variable_name>alflyticsDashboardsTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.1.Dashboards.zip</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
-        </field>
-        <field>
-          <variable_name>alflyticsDatasourcesTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.5.Datasources.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.Dashboards.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsOLAPTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.4.OLAP.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.OLAP.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsReportsTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.3.Reports.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.Reports.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>alflyticsRepositoryTargetPath</variable_name>
-          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.2.ETL.zip</variable_value>
+          <variable_value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;..&#x24;&#x7b;file.separator&#x7d;default-content&#x24;&#x7b;file.separator&#x7d;Alflytics.ETL.zip</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>208</xloc>
+      <xloc>400</xloc>
       <yloc>144</yloc>
     </entry>
     <entry>
@@ -593,38 +603,31 @@
           <wildcard/>
         </field>
         <field>
-          <source_filefolder>&#x24;&#x7b;alflyticsDatasourcesSrcPath&#x7d;</source_filefolder>
+          <source_filefolder>&#x24;&#x7b;alflyticsOLAPSrcPath&#x7d;</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
-          <destination_filefolder>&#x24;&#x7b;alflyticsDatasourcesTargetPath&#x7d;</destination_filefolder>
+          <destination_filefolder>&#x24;&#x7b;alflyticsOLAPTargetPath&#x7d;</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-1</destination_configuration_name>
           <wildcard/>
         </field>
         <field>
-          <source_filefolder>&#x24;&#x7b;alflyticsOLAPSrcPath&#x7d;</source_filefolder>
+          <source_filefolder>&#x24;&#x7b;alflyticsReportsSrcPath&#x7d;</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
-          <destination_filefolder>&#x24;&#x7b;alflyticsOLAPTargetPath&#x7d;</destination_filefolder>
+          <destination_filefolder>&#x24;&#x7b;alflyticsReportsTargetPath&#x7d;</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
           <wildcard/>
         </field>
         <field>
-          <source_filefolder>&#x24;&#x7b;alflyticsReportsSrcPath&#x7d;</source_filefolder>
-          <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
-          <destination_filefolder>&#x24;&#x7b;alflyticsReportsTargetPath&#x7d;</destination_filefolder>
-          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
-          <wildcard/>
-        </field>
-        <field>
           <source_filefolder>&#x24;&#x7b;alflyticsRepositorySrcPath&#x7d;</source_filefolder>
-          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
+          <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
           <destination_filefolder>&#x24;&#x7b;alflyticsRepositoryTargetPath&#x7d;</destination_filefolder>
-          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
           <wildcard/>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
+      <xloc>608</xloc>
       <yloc>144</yloc>
     </entry>
     <entry>
@@ -637,6 +640,71 @@
       <nr>0</nr>
       <xloc>368</xloc>
       <yloc>256</yloc>
+    </entry>
+    <entry>
+      <name>_addDataSources</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x24;&#x7b;file.separator&#x7d;_addDataSources.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>
+        <pass_all_parameters>N</pass_all_parameters>
+        <parameter>
+          <name>alfrescoVersion</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;alfrescoVersion&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>datasourceName</name>
+          <stream_name/>
+          <value>Alflytics</value>
+        </parameter>
+        <parameter>
+          <name>pentahoHost</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;pentahoHost&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>pentahoPassword</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;pentahoPassword&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>pentahoProtocol</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;pentahoProtocol&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>pentahoUser</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;pentahoUser&#x7d;</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>208</xloc>
+      <yloc>144</yloc>
     </entry>
   </entries>
   <hops>
@@ -677,15 +745,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Copy in dwh target folder</from>
-      <to>Set alflyticsRepository paths</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Clean dwh target folder</from>
       <to>Copy in dwh target folder</to>
       <from_nr>0</from_nr>
@@ -713,6 +772,24 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>START</from>
+      <to>Set alflyticsDwh paths</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>_addDataSources</from>
+      <to>Set webXmlPath</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Copying repositories</from>
       <to>Set webXmlPath</to>
       <from_nr>0</from_nr>
@@ -722,13 +799,22 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>Set alflyticsDwh paths</to>
+      <from>_addDataSources</from>
+      <to>Set alflyticsRepository paths</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Copy in dwh target folder</from>
+      <to>_addDataSources</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>

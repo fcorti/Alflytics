@@ -1,0 +1,385 @@
+<Schema name="Alflytics" description="Alflytics by Francesco Corti (fcorti@gmail.com)" measuresCaption="Measures">
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Action" description="Action">
+    <Hierarchy name="Action" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_ACTIONS" primaryKey="ID" description="Action">
+      <Table name="DWH_ALF_DIM_ACTIONS" keyColumn="ID" />
+      <Level name="Action" visible="true" table="DWH_ALF_DIM_ACTIONS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Alfresco content" description="Alfresco content">
+    <Hierarchy name="Alfresco content" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_CONTENTS" primaryKey="ID" description="Alfresco content">
+      <Table name="DWH_ALF_DIM_CONTENTS" keyColumn="ID" />
+      <Level name="Alfresco content" visible="true" table="DWH_ALF_DIM_CONTENTS" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Alfresco folder" description="Alfresco folder">
+    <Hierarchy name="Alfresco folder" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_FOLDERS" primaryKey="ID" description="Alfresco folder">
+      <Table name="DWH_ALF_DIM_FOLDERS" keyColumn="ID" />
+      <Level name="Alfresco folder" visible="true" table="DWH_ALF_DIM_FOLDERS" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Alfresco instance" description="Alfresco instance">
+    <Hierarchy name="Alfresco instance" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_INSTANCES" primaryKey="ID" description="Alfresco instance">
+      <Table name="DWH_ALF_DIM_INSTANCES" keyColumn="ID" />
+      <Level name="Alfresco instance" visible="true" table="DWH_ALF_DIM_INSTANCES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Creation date" description="Creation date">
+    <Hierarchy name="Creation date" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_DATES" primaryKey="ID" description="Creation date">
+      <Join leftKey="MONTH_ID" rightAlias="DWH_DIM_DATES_MONTHS" rightKey="ID">
+        <Table name="DWH_DIM_DATES" keyColumn="ID" />
+        <Join leftKey="YEAR_ID" rightAlias="DWH_DIM_DATES_YEARS" rightKey="ID">
+          <Table name="DWH_DIM_DATES_MONTHS" keyColumn="ID" />
+          <Table name="DWH_DIM_DATES_YEARS" keyColumn="ID" />
+        </Join>
+      </Join>
+      <Level name="Creation year" visible="true" table="DWH_DIM_DATES_YEARS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Creation month" visible="true" table="DWH_DIM_DATES_MONTHS" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Creation date" visible="true" table="DWH_DIM_DATES" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Category" description="Category">
+    <Hierarchy name="Category" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_CATEGORIES" primaryKey="ID" description="Category">
+      <Table name="DWH_ALF_DIM_CATEGORIES" keyColumn="ID" />
+      <Level name="Category" visible="true" table="DWH_ALF_DIM_CATEGORIES" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Creation time" description="Creation time">
+    <Hierarchy name="Creation time" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_TIME_MINUTES" primaryKey="ID" description="Creation time">
+      <Join leftKey="HOUR_ID" rightAlias="DWH_DIM_TIME_HOURS" rightKey="ID">
+        <Table name="DWH_DIM_TIME_MINUTES" keyColumn="ID" />
+        <Table name="DWH_DIM_TIME_HOURS" keyColumn="ID" />
+      </Join>
+      <Level name="Creation hour" visible="true" table="DWH_DIM_TIME_HOURS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Creation minute" visible="true" table="DWH_DIM_TIME_MINUTES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Creator" description="Creator">
+    <Hierarchy name="Creator" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_USERS" primaryKey="ID" description="Creator">
+      <Table name="DWH_ALF_DIM_USERS" keyColumn="ID" />
+      <Level name="Creator" visible="true" table="DWH_ALF_DIM_USERS" column="ID" nameColumn="ALF_ID" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Date" description="Date">
+    <Hierarchy name="Date" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_DATES" primaryKey="ID" description="Date">
+      <Join leftKey="MONTH_ID" rightAlias="DWH_DIM_DATES_MONTHS" rightKey="ID">
+        <Table name="DWH_DIM_DATES" keyColumn="ID" />
+        <Join leftKey="YEAR_ID" rightAlias="DWH_DIM_DATES_YEARS" rightKey="ID">
+          <Table name="DWH_DIM_DATES_MONTHS" keyColumn="ID" />
+          <Table name="DWH_DIM_DATES_YEARS" keyColumn="ID" />
+        </Join>
+      </Join>
+      <Level name="Year" visible="true" table="DWH_DIM_DATES_YEARS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Month" visible="true" table="DWH_DIM_DATES_MONTHS" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Date" visible="true" table="DWH_DIM_DATES" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ending date" description="Ending date">
+    <Hierarchy name="Ending date" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_DATES" primaryKey="ID" description="Ending date">
+      <Join leftKey="MONTH_ID" rightAlias="DWH_DIM_DATES_MONTHS" rightKey="ID">
+        <Table name="DWH_DIM_DATES" keyColumn="ID" />
+        <Join leftKey="YEAR_ID" rightAlias="DWH_DIM_DATES_YEARS" rightKey="ID">
+          <Table name="DWH_DIM_DATES_MONTHS" keyColumn="ID" />
+          <Table name="DWH_DIM_DATES_YEARS" keyColumn="ID" />
+        </Join>
+      </Join>
+      <Level name="Endind year" visible="true" table="DWH_DIM_DATES_YEARS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Endind month" visible="true" table="DWH_DIM_DATES_MONTHS" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Ending date" visible="true" table="DWH_DIM_DATES" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ending time" description="Ending time">
+    <Hierarchy name="Ending time" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_TIME_MINUTES" primaryKey="ID" description="Ending time">
+      <Join leftKey="HOUR_ID" rightAlias="DWH_DIM_TIME_HOURS" rightKey="ID">
+        <Table name="DWH_DIM_TIME_MINUTES" keyColumn="ID" />
+        <Table name="DWH_DIM_TIME_HOURS" keyColumn="ID" />
+      </Join>
+      <Level name="Endind hour" visible="true" table="DWH_DIM_TIME_HOURS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Endind minute" visible="true" table="DWH_DIM_TIME_MINUTES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Mime type" description="Mime type">
+    <Hierarchy name="Mime type" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_MIME_TYPES" primaryKey="ID" description="Mime type">
+      <Table name="DWH_ALF_DIM_MIME_TYPES" keyColumn="ID" />
+      <Level name="Mime type" visible="true" table="DWH_ALF_DIM_MIME_TYPES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Modification date" description="Modification date">
+    <Hierarchy name="Modification date" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_DATES" primaryKey="ID" description="Modification date">
+      <Join leftKey="MONTH_ID" rightAlias="DWH_DIM_DATES_MONTHS" rightKey="ID">
+        <Table name="DWH_DIM_DATES" keyColumn="ID" />
+        <Join leftKey="YEAR_ID" rightAlias="DWH_DIM_DATES_YEARS" rightKey="ID">
+          <Table name="DWH_DIM_DATES_MONTHS" keyColumn="ID" />
+          <Table name="DWH_DIM_DATES_YEARS" keyColumn="ID" />
+        </Join>
+      </Join>
+      <Level name="Modification year" visible="true" table="DWH_DIM_DATES_YEARS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Modification month" visible="true" table="DWH_DIM_DATES_MONTHS" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Modification date" visible="true" table="DWH_DIM_DATES" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Modification time" description="Modification time">
+    <Hierarchy name="Modification time" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_TIME_MINUTES" primaryKey="ID" description="Modification time">
+      <Join leftKey="HOUR_ID" rightAlias="DWH_DIM_TIME_HOURS" rightKey="ID">
+        <Table name="DWH_DIM_TIME_MINUTES" keyColumn="ID" />
+        <Table name="DWH_DIM_TIME_HOURS" keyColumn="ID" />
+      </Join>
+      <Level name="Modification hour" visible="true" table="DWH_DIM_TIME_HOURS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Modification minute" visible="true" table="DWH_DIM_TIME_MINUTES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Modifier" description="Modifier">
+    <Hierarchy name="Modifier" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_USERS" primaryKey="ID" description="Modifier">
+      <Table name="DWH_ALF_DIM_USERS" keyColumn="ID" />
+      <Level name="Modifier" visible="true" table="DWH_ALF_DIM_USERS" column="ID" nameColumn="ALF_ID" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Node type" description="Node type">
+    <Hierarchy name="Node type" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_NODE_TYPES" primaryKey="ID" description="Node type">
+      <Table name="DWH_ALF_DIM_NODE_TYPES" keyColumn="ID" />
+      <Level name="Node type" visible="true" table="DWH_ALF_DIM_NODE_TYPES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Owner" description="Owner">
+    <Hierarchy name="Owner" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_USERS" primaryKey="ID" description="Owner">
+      <Table name="DWH_ALF_DIM_USERS" keyColumn="ID" />
+      <Level name="Owner" visible="true" table="DWH_ALF_DIM_USERS" column="ID" nameColumn="ALF_ID" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Process definition" description="Process definition">
+    <Hierarchy name="Process definition" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_WF_DEFINITIONS" primaryKey="ID" description="Process definition">
+      <Table name="DWH_ALF_DIM_WF_DEFINITIONS" keyColumn="ID" />
+      <Level name="Process definition" visible="true" table="DWH_ALF_DIM_WF_DEFINITIONS" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Process instance" description="Process instance">
+    <Hierarchy name="Process instance" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_WF_INSTANCES" primaryKey="ID" description="Process instance">
+      <Table name="DWH_ALF_DIM_WF_INSTANCES" keyColumn="ID" />
+      <Level name="Process instance" visible="true" table="DWH_ALF_DIM_WF_INSTANCES" column="ID" nameColumn="SRC_ID" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Starting date" description="Starting date">
+    <Hierarchy name="Starting date" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_DATES" primaryKey="ID" description="Starting date">
+      <Join leftKey="MONTH_ID" rightAlias="DWH_DIM_DATES_MONTHS" rightKey="ID">
+        <Table name="DWH_DIM_DATES" keyColumn="ID" />
+        <Join leftKey="YEAR_ID" rightAlias="DWH_DIM_DATES_YEARS" rightKey="ID">
+          <Table name="DWH_DIM_DATES_MONTHS" keyColumn="ID" />
+          <Table name="DWH_DIM_DATES_YEARS" keyColumn="ID" />
+        </Join>
+      </Join>
+      <Level name="Starting year" visible="true" table="DWH_DIM_DATES_YEARS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Starting month" visible="true" table="DWH_DIM_DATES_MONTHS" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Starting date" visible="true" table="DWH_DIM_DATES" column="ID" nameColumn="DESCRIPTION" type="Date" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Starting time" description="Starting time">
+    <Hierarchy name="Starting time" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_TIME_MINUTES" primaryKey="ID" description="Starting time">
+      <Join leftKey="HOUR_ID" rightAlias="DWH_DIM_TIME_HOURS" rightKey="ID">
+        <Table name="DWH_DIM_TIME_MINUTES" keyColumn="ID" />
+        <Table name="DWH_DIM_TIME_HOURS" keyColumn="ID" />
+      </Join>
+      <Level name="Starting hour" visible="true" table="DWH_DIM_TIME_HOURS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Starting minute" visible="true" table="DWH_DIM_TIME_MINUTES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tag" description="Tag">
+    <Hierarchy name="Tag" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_TAGS" primaryKey="ID" description="Tag">
+      <Table name="DWH_ALF_DIM_TAGS" keyColumn="ID" />
+      <Level name="Tag" visible="true" table="DWH_ALF_DIM_TAGS" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Time" description="Time">
+    <Hierarchy name="Time" visible="true" hasAll="true" primaryKeyTable="DWH_DIM_TIME_MINUTES" primaryKey="ID" description="Time">
+      <Join leftKey="HOUR_ID" rightAlias="DWH_DIM_TIME_HOURS" rightKey="ID">
+        <Table name="DWH_DIM_TIME_MINUTES" keyColumn="ID" />
+        <Table name="DWH_DIM_TIME_HOURS" keyColumn="ID" />
+      </Join>
+      <Level name="Hour" visible="true" table="DWH_DIM_TIME_HOURS" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      <Level name="Minute" visible="true" table="DWH_DIM_TIME_MINUTES" column="ID" nameColumn="DESCRIPTION" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="User" description="User">
+    <Hierarchy name="User" visible="true" hasAll="true" primaryKeyTable="DWH_ALF_DIM_USERS" primaryKey="ID" description="User">
+      <Table name="DWH_ALF_DIM_USERS" keyColumn="ID" />
+      <Level name="User" visible="true" table="DWH_ALF_DIM_USERS" column="ID" nameColumn="ALF_ID" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+    </Hierarchy>
+  </Dimension>
+
+  <Cube name="AlfrescoAuditTrail" caption="Alfresco audit trail" visible="true" description="Alfresco audit trail by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="DWH_ALF_FACT_ACCESSES" />
+    <DimensionUsage source="Action" name="Action" visible="true" foreignKey="ACTION_ID" highCardinality="false" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <DimensionUsage source="Date" name="Date" visible="true" foreignKey="DATE_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Node path" description="Node path" foreignKey="NODE_PATH">
+      <Hierarchy name="Node path" visible="true" hasAll="true" primaryKey="NODE_PATH" description="Node path">
+        <Level name="Node path" visible="true" column="NODE_PATH" nameColumn="NODE_PATH" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Time" name="Time" visible="true" foreignKey="MINUTE_ID" highCardinality="false" />
+    <DimensionUsage source="User" name="User" visible="true" foreignKey="USER_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="User description" description="User description" foreignKey="USER_DESCRIPTION">
+      <Hierarchy name="User description" visible="true" hasAll="true" primaryKey="USER_DESCRIPTION" description="User description">
+        <Level name="User description" visible="true" column="USER_DESCRIPTION" nameColumn="USER_DESCRIPTION" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Actions" datatype="Integer" aggregator="count" caption="Actions" description="Actions" visible="true" />
+  </Cube>
+
+  <Cube name="AlfrescoContents" caption="Alfresco content" visible="true" description="Alfresco content by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="DWH_ALF_DIM_CONTENTS" keyColumn="ID" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <DimensionUsage source="Creation date" name="Creation date" visible="true" foreignKey="CREATED_DT" highCardinality="false" />
+    <DimensionUsage source="Creation time" name="Creation time" visible="true" foreignKey="CREATED_AT" highCardinality="false" />
+    <DimensionUsage source="Creator" name="Creator" visible="true" foreignKey="CREATED_BY_ID" highCardinality="false" />
+    <DimensionUsage source="Mime type" name="Mime type" visible="true" foreignKey="NODE_TYPE_ID" highCardinality="false" />
+    <DimensionUsage source="Modification date" name="Modification date" visible="true" foreignKey="MODIFIED_DT" highCardinality="false" />
+    <DimensionUsage source="Modification time" name="Modification time" visible="true" foreignKey="MODIFIED_AT" highCardinality="false" />
+    <DimensionUsage source="Modifier" name="Modifier" visible="true" foreignKey="MODIFIED_BY_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Name" description="Name" foreignKey="ID">
+      <Hierarchy name="Name" visible="true" hasAll="true" primaryKey="ID" description="Name">
+        <Level name="Name" visible="true" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Node type" name="Node type" visible="true" foreignKey="NODE_TYPE_ID" highCardinality="false" />
+    <DimensionUsage source="Owner" name="Owner" visible="true" foreignKey="OWNER_ID" highCardinality="false" />
+    <Measure name="Num" datatype="Integer" aggregator="count" caption="Num" description="Num" visible="true" />
+    <Measure name="Bytes" datatype="Integer" column="SIZE_IN_BYTES" aggregator="sum" caption="Bytes" description="Bytes" visible="false" />
+    <CalculatedMember name="MBytes" formatString="" formula="[Measures].[Bytes] / (1024*1024)" dimension="Measures" visible="true" />
+    <CalculatedMember name="GBytes" formatString="" formula="[Measures].[Bytes] / (1024*1024*1024)" dimension="Measures" visible="true" />
+  </Cube>
+
+  <Cube name="AlfrescoFolders" caption="Alfresco folders" visible="true" description="Alfresco folders by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="DWH_ALF_DIM_FOLDERS" keyColumn="ID" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <DimensionUsage source="Creation date" name="Creation date" visible="true" foreignKey="CREATED_DT" highCardinality="false" />
+    <DimensionUsage source="Creation time" name="Creation time" visible="true" foreignKey="CREATED_AT" highCardinality="false" />
+    <DimensionUsage source="Creator" name="Creator" visible="true" foreignKey="CREATED_BY_ID" highCardinality="false" />
+    <DimensionUsage source="Modification date" name="Modification date" visible="true" foreignKey="MODIFIED_DT" highCardinality="false" />
+    <DimensionUsage source="Modification time" name="Modification time" visible="true" foreignKey="MODIFIED_AT" highCardinality="false" />
+    <DimensionUsage source="Modifier" name="Modifier" visible="true" foreignKey="MODIFIED_BY_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Name" description="Name" foreignKey="ID">
+      <Hierarchy name="Name" visible="true" hasAll="true" primaryKey="ID" description="Name">
+        <Level name="Name" visible="true" column="ID" nameColumn="NAME" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Node type" name="Node type" visible="true" foreignKey="NODE_TYPE_ID" highCardinality="false" />
+    <DimensionUsage source="Owner" name="Owner" visible="true" foreignKey="OWNER_ID" highCardinality="false" />
+    <Measure name="Num" datatype="Integer" aggregator="count" caption="Num" description="Num" visible="true" />
+  </Cube>
+
+  <Cube name="AlfrescoCategories" caption="Alfresco categories" visible="true" description="Alfresco categories by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="VW_DWH_ALF_FACT_CATEGORIES" keyColumn="ID" />
+    <DimensionUsage source="Alfresco content" name="Alfresco content" visible="true" foreignKey="CONTENT_ID" highCardinality="true" />
+    <DimensionUsage source="Alfresco folder" name="Alfresco folder" visible="true" foreignKey="FOLDER_ID" highCardinality="true" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <DimensionUsage source="Category" name="Category" visible="true" foreignKey="CATEGORY_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ordinal" description="Ordinal" foreignKey="ORDINAL">
+      <Hierarchy name="Ordinal" visible="true" hasAll="true" primaryKey="ORDINAL" description="Ordinal">
+        <Level name="Ordinal" visible="true" column="ORDINAL" nameColumn="ORDINAL" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Num" datatype="Integer" aggregator="count" caption="Num" description="Num" visible="true" />
+  </Cube>
+
+  <Cube name="AlfrescoTags" caption="Alfresco tags" visible="true" description="Alfresco tags by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="VW_DWH_ALF_FACT_TAGS" keyColumn="ID" />
+    <DimensionUsage source="Alfresco content" name="Alfresco content" visible="true" foreignKey="CONTENT_ID" highCardinality="true" />
+    <DimensionUsage source="Alfresco folder" name="Alfresco folder" visible="true" foreignKey="FOLDER_ID" highCardinality="true" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <DimensionUsage source="Tag" name="Tag" visible="true" foreignKey="TAG_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Ordinal" description="Ordinal" foreignKey="ORDINAL">
+      <Hierarchy name="Ordinal" visible="true" hasAll="true" primaryKey="ORDINAL" description="Ordinal">
+        <Level name="Ordinal" visible="true" column="ORDINAL" nameColumn="ORDINAL" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Num" datatype="Integer" aggregator="count" caption="Num" description="Num" visible="true" />
+  </Cube>
+
+  <Cube name="AlfrescoProcessInstances" caption="Alfresco process instances" visible="true" description="Alfresco process instances by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="DWH_ALF_DIM_WF_INSTANCES" keyColumn="ID" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Completed" description="Completed" foreignKey="COMPLETED">
+      <Hierarchy name="Completed" visible="true" hasAll="true" primaryKey="COMPLETED" description="Completed">
+        <Level name="Completed" visible="true" column="COMPLETED" nameColumn="COMPLETED" type="Boolean" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Identifier" description="Identifier" foreignKey="SRC_ID">
+      <Hierarchy name="Identifier" visible="true" hasAll="true" primaryKey="SRC_ID" description="Identifier">
+        <Level name="Identifier" visible="true" column="SRC_ID" nameColumn="SRC_ID" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Process definition" name="Process definition" visible="true" foreignKey="DEFINITION_ID" highCardinality="false" />
+    <DimensionUsage source="Ending date" name="Ending date" visible="true" foreignKey="ENDED_DT" highCardinality="false" />
+    <DimensionUsage source="Ending time" name="Ending time" visible="true" foreignKey="ENDED_AT" highCardinality="false" />
+    <DimensionUsage source="Starting date" name="Starting date" visible="true" foreignKey="STARTED_DT" highCardinality="false" />
+    <DimensionUsage source="Starting time" name="Starting time" visible="true" foreignKey="STARTED_AT" highCardinality="false" />
+    <Measure name="Num" datatype="Integer" aggregator="count" caption="Num" description="Num" visible="true" />
+    <Measure name="Num items" datatype="Integer" aggregator="sum" caption="Num items" description="Num items" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+        (SELECT COUNT(*) FROM "DWH_ALF_DIM_WF_ITEMS" WHERE "DWH_ALF_DIM_WF_ITEMS"."INSTANCE_ID"="DWH_ALF_DIM_WF_INSTANCES"."INSTANCE_ID" AND "DWH_ALF_DIM_WF_ITEMS"."WF_INSTANCE_ID"="DWH_ALF_DIM_WF_INSTANCES"."ID")
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+  </Cube>
+
+  <Cube name="AlfrescoProcessTasks" caption="Alfresco process tasks" visible="true" description="Alfresco process tasks by Francesco Corti (fcorti@gmail.com)" cache="true" enabled="true">
+    <Table name="DWH_ALF_DIM_WF_TASKS" keyColumn="ID" />
+    <DimensionUsage source="Alfresco instance" name="Alfresco instance" visible="true" foreignKey="INSTANCE_ID" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Assignee" description="Assignee" foreignKey="ASSIGNEE">
+      <Hierarchy name="Assignee" visible="true" hasAll="true" primaryKey="ASSIGNEE" description="Assignee">
+        <Level name="Assignee" visible="true" column="ASSIGNEE" nameColumn="ASSIGNEE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Ending date" name="Ending date" visible="true" foreignKey="DUE_DT" highCardinality="false" />
+    <DimensionUsage source="Ending time" name="Ending time" visible="true" foreignKey="DUE_AT" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="true" name="Name" description="Name" foreignKey="NAME">
+      <Hierarchy name="Name" visible="true" hasAll="true" primaryKey="NAME" description="Name">
+        <Level name="Name" visible="true" column="NAME" nameColumn="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Priority" description="Priority" foreignKey="PRIORITY">
+      <Hierarchy name="Priority" visible="true" hasAll="true" primaryKey="PRIORITY" description="Priority">
+        <Level name="Priority" visible="true" column="PRIORITY" nameColumn="PRIORITY" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="Process instance" name="Process instance" visible="true" foreignKey="WF_INSTANCE_ID" highCardinality="false" />
+    <DimensionUsage source="Starting date" name="Starting date" visible="true" foreignKey="STARTED_DT" highCardinality="false" />
+    <DimensionUsage source="Starting time" name="Starting time" visible="true" foreignKey="STARTED_AT" highCardinality="false" />
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="State" description="State" foreignKey="STATE">
+      <Hierarchy name="State" visible="true" hasAll="true" primaryKey="STATE" description="State">
+        <Level name="State" visible="true" column="STATE" nameColumn="STATE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Task definition" description="Task definition" foreignKey="TASK_DEFINITION_ID">
+      <Hierarchy name="Task definition" visible="true" hasAll="true" primaryKey="PRIORITY" description="Task definition">
+        <Level name="Task definition" visible="true" column="TASK_DEFINITION_ID" nameColumn="TASK_DEFINITION_ID" type="Integer" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" />
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Num" datatype="Integer" aggregator="count" caption="Num" description="Num" visible="true" />
+  </Cube>
+
+</Schema>
