@@ -145,6 +145,7 @@ ON DUPLICATE KEY UPDATE
  WHERE
   `INSTANCE_ID`=${instanceId}
 </query>
+<query queryId="reportIds">SELECT `ID` AS `reportId` FROM `DWH_REPORTS` WHERE `IS_ACTIVE`='Y'</query>
 <query queryId="timeHourIns">
 INSERT INTO `DWH_DIM_TIME_HOURS` (`ID`,`DESCRIPTION`)
 (

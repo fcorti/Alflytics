@@ -781,15 +781,6 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>_addDataSources</from>
-      <to>Set webXmlPath</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Copying repositories</from>
       <to>Set webXmlPath</to>
       <from_nr>0</from_nr>

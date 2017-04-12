@@ -151,6 +151,15 @@ WHEN NOT MATCHED THEN
  WHERE
   INSTANCE_ID=${instanceId}
 </query>
+<query queryId="reportIds">SELECT "ID"+'' AS "reportId" FROM "DWH_REPORTS" WHERE "IS_ACTIVE"='Y'</query>
+<query queryId="reportInfo">
+SELECT 
+ CONCAT('${alflytics.pentaho.protocol}://${alflytics.pentaho.host}:${alflytics.pentaho.port}/pentaho/api/repo/files/',"PRPT_PATH",':',"PRPT_NAME") AS "HTTP_CALL",
+ "OUTPUT_TYPE"
+FROM
+ "DWH_REPORTS"
+WHERE
+ "ID"=${reportId}</query>
 <query queryId="timeHourIns">
 MERGE INTO DWH_DIM_TIME_HOURS USING (
   SELECT ? AS ID, ? AS DESCRIPTION FROM (VALUES(0))
