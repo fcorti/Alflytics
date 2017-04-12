@@ -174,7 +174,7 @@
      {
       "name": "postExecution",
       "type": "JavaScript",
-      "value": "function f() {\n\n    $('#extractButtonObj').children(\":first\").attr('class','btn btn-primary');\n\n} "
+      "value": "function f() {\n\n    $('#publishButtonObj').children(\":first\").attr('class','btn btn-primary');\n\n} "
      },
      {
       "name": "tooltip",
