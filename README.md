@@ -27,6 +27,6 @@ Open a terminal and execute the commands detailed below.
 
 # Documentation and support
 
-For more informations about the project, support or further details, go throught the author's website at [fcorti.com/alflytics](http://fcorti.com/alflytics/).
+For more informations about the project, support or further details, go throught the [documentation](https://github.com/fcorti/Alflytics/blob/master/documentation/Alflytics-Manual.pdf).
 
 
