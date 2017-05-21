@@ -149,7 +149,12 @@ ON CONFLICT ("ID") DO UPDATE SET
 <query queryId="reportInfo">
 SELECT 
  CONCAT('${alflytics.pentaho.protocol}://${alflytics.pentaho.host}:${alflytics.pentaho.port}/pentaho/api/repo/files/',"PRPT_PATH",':',"PRPT_NAME") AS "HTTP_CALL",
- "OUTPUT_TYPE"
+ "OUTPUT_TYPE",
+ "ALF_FTP_HOST" AS "FTP_HOST",
+ "ALF_FTP_PORT" AS "FTP_PORT",
+ "ALF_FTP_LOGIN" AS "FTP_LOGIN",
+ "ALF_FTP_PASSWORD" AS "FTP_PASSWORD",
+ "ALF_FTP_PATH" AS "FTP_PATH"
 FROM
  "DWH_REPORTS"
 WHERE
