@@ -623,7 +623,7 @@
       <description />
       <type>EVAL</type>
       <script>
-parent_job.setVariable("now", (new Date()).toISOString());
+parent_job.setVariable("now", (new Date()).toISOString().replace(/-/g, "").replace(/:/g, "").replace(/\./g, ""));
 
 true; // remember that this job entry has to return true or false</script>
       <parallel>N</parallel>
